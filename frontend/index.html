@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Mini Instagram Social Media Platform">
+
+    <meta name="theme-color"
+        content="#E1306C">
+
+    <title>SocialNest</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- NAVBAR -->
+    <!-- ========================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <h1 class="logo">
+
+                  <i class="fas fa-globe"></i>
+
+                  SocialNest
+
+            </h1>
+            
+
+            <div class="nav-links"
+                id="navLinks">
+
+                <a href="#"
+                    onclick="showPage('feed')">
+
+                    <i class="fas fa-house"></i>
+
+                    Home
+
+                </a>
+
+                <a href="#"
+                    onclick="showPage('search')">
+
+                    <i class="fas fa-search"></i>
+
+                    Search
+
+                </a>
+
+                <a href="#"
+                    onclick="showPage('create')">
+
+                    <i class="fas fa-square-plus"></i>
+
+                    Create
+
+                </a>
+
+                <a href="#"
+                    onclick="showPage('profile')">
+
+                    <i class="fas fa-user"></i>
+
+                    Profile
+
+                </a>
+
+                <a href="#"
+                    onclick="logout()">
+
+                    <i class="fas fa-right-from-bracket"></i>
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- ========================= -->
+    <!-- AUTH PAGE -->
+    <!-- ========================= -->
+
+    <section id="authPage"
+        class="page">
+
+        <div class="auth-container">
+
+            <div class="auth-card">
+
+                <h1>
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                     SocialNest
+
+                </h1>
+
+                <p class="subtitle">
+
+                    Share your moments with everyone ❤️
+
+                </p>
+
+                <!-- LOGIN -->
+
+                <div id="loginForm"
+                    class="auth-form">
+
+                    <h2>
+
+                        Welcome Back 👋
+
+                    </h2>
+
+                    <form onsubmit="handleLogin(event)">
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter Email"
+                            autocomplete="email"
+                            required>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter Password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            class="btn btn-primary"
+                            type="submit">
+
+                            <i class="fas fa-right-to-bracket"></i>
+
+                            Login
+
+                        </button>
+
+                    </form>
+
+                    <p>
+
+                        Don't have an account?
+
+                        <a href="#"
+                            onclick="showRegister()">
+
+                            Register
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+                <!-- REGISTER -->
+
+                <div id="registerForm"
+                    class="auth-form"
+                    style="display:none;">
+
+                    <h2>
+
+                        Create Account 🚀
+
+                    </h2>
+
+                    <form onsubmit="handleRegister(event)">
+
+                        <input
+                            type="text"
+                            id="regName"
+                            placeholder="Full Name"
+                            autocomplete="name"
+                            required>
+
+                        <input
+                            type="text"
+                            id="regUsername"
+                            placeholder="Username"
+                            autocomplete="username"
+                            required>
+
+                        <input
+                            type="email"
+                            id="regEmail"
+                            placeholder="Email"
+                            autocomplete="email"
+                            required>
+
+                        <input
+                            type="password"
+                            id="regPassword"
+                            placeholder="Password"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required>
+
+                        <textarea
+                            id="regBio"
+                            rows="4"
+                            maxlength="150"
+                            placeholder="Write something about yourself..."></textarea>
+
+                        <button
+                            class="btn btn-primary"
+                            type="submit">
+
+                            <i class="fas fa-user-plus"></i>
+
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+                    <p>
+
+                        Already have an account?
+
+                        <a href="#"
+                            onclick="showLogin()">
+
+                            Login
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+<!-- FEED PAGE -->
+<!-- ========================= -->
+
+<div id="feedPage" class="page" style="display:none;">
+
+    <div class="container">
+
+        <div class="feed">
+
+            <div class="page-header">
+                <h2>
+                    <i class="fas fa-house"></i>
+                    Home Feed
+                </h2>
+            </div>
+
+            <!-- Stories -->
+
+            <div class="stories-wrapper">
+
+                <div id="storiesContainer" class="stories">
+
+                    <!-- Stories will come from JS -->
+
+                </div>
+
+            </div>
+
+            <!-- Posts -->
+
+            <div id="postsContainer">
+
+                <div class="loading">
+
+                    <i class="fas fa-spinner fa-spin"></i>
+
+                    Loading Posts...
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- SEARCH PAGE -->
+<!-- ========================= -->
+
+<div id="searchPage"
+     class="page"
+     style="display:none;">
+
+    <div class="container">
+
+        <div class="page-header">
+
+            <h2>
+
+                <i class="fas fa-search"></i>
+
+                Search Users
+
+            </h2>
+
+        </div>
+
+        <div class="search-box">
+
+            <i class="fas fa-search"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search username..."
+                autocomplete="off"
+                oninput="searchUsers()">
+
+        </div>
+
+        <div id="searchResults">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- CREATE POST -->
+<!-- ========================= -->
+
+<div id="createPage"
+     class="page"
+     style="display:none;">
+
+    <div class="container">
+
+        <div class="create-card">
+
+            <h2>
+
+                <i class="fas fa-square-plus"></i>
+
+                Create New Post
+
+            </h2>
+
+            <form
+                class="create-post-form"
+                onsubmit="handleCreatePost(event)">
+
+                <div class="file-upload">
+
+                    <label
+                        class="file-upload-label"
+                        for="postFile">
+
+                        <i class="fas fa-image"></i>
+
+                        Choose Image
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="postFile"
+                        accept="image/*"
+                        onchange="handleFileSelect(event)">
+
+                </div>
+
+                <div
+                    id="imagePreview"
+                    class="image-preview">
+
+                    <span>
+
+                        No Image Selected
+
+                    </span>
+
+                </div>
+
+                <input
+                    type="url"
+                    id="postImage"
+                    placeholder="Or Paste Image URL"
+                    oninput="handleImageUrlInput()">
+
+                <div class="mood-select-container">
+
+                    <label>
+
+                        Current Mood
+
+                    </label>
+
+                    <select id="postMood">
+
+                        <option value="">
+                            Select Mood
+                        </option>
+
+                        <option value="😊 Happy">
+                            😊 Happy
+                        </option>
+
+                        <option value="😍 Loved">
+                            😍 Loved
+                        </option>
+
+                        <option value="🔥 Confident">
+                            🔥 Confident
+                        </option>
+
+                        <option value="😴 Sleepy">
+                            😴 Sleepy
+                        </option>
+
+                        <option value="🎉 Celebration">
+                            🎉 Celebration
+                        </option>
+
+                        <option value="😎 Chill">
+                            😎 Chill
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <textarea
+                    id="postCaption"
+                    maxlength="500"
+                    rows="5"
+                    placeholder="Write a Caption..."></textarea>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Share Post
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ========================= -->
+<!-- PROFILE PAGE -->
+<!-- ========================= -->
+
+<div id="profilePage"
+     class="page"
+     style="display:none;">
+
+    <div class="container">
+
+        <!-- Profile Header -->
+
+        <div id="profileHeader"
+             class="profile-header">
+
+            <img
+                id="profilePic"
+                src=""
+                alt="Profile Picture">
+
+            <div class="profile-info">
+
+                <h2 id="profileName">
+                    Loading...
+                </h2>
+
+                <p id="profileUsername">
+                    @username
+                </p>
+
+                <p id="profileBio">
+                    No Bio
+                </p>
+
+                <div class="profile-stats">
+
+                    <div class="stat-box">
+                        <strong id="postsCount">0</strong>
+                        <span>Posts</span>
+                    </div>
+
+                    <div class="stat-box">
+                        <strong id="followersCount">0</strong>
+                        <span>Followers</span>
+                    </div>
+
+                    <div class="stat-box">
+                        <strong id="followingCount">0</strong>
+                        <span>Following</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Profile Edit -->
+
+        <div class="profile-edit-panel">
+
+            <h3>
+
+                <i class="fas fa-camera"></i>
+
+                Update Profile Picture
+
+            </h3>
+
+            <div class="profile-pic-chooser">
+
+                <label
+                    class="file-upload-label"
+                    for="profilePicFile">
+
+                    <i class="fas fa-upload"></i>
+
+                    Choose Image
+
+                </label>
+
+                <input
+                    type="file"
+                    id="profilePicFile"
+                    accept="image/*"
+                    onchange="handleProfilePicFileSelect(event)">
+
+                <input
+                    type="url"
+                    id="profilePicUrl"
+                    placeholder="Or Paste Image URL"
+                    oninput="handleProfilePicUrlInput()">
+
+            </div>
+
+            <div
+                id="profilePicPreview"
+                class="image-preview profile-preview">
+
+                <span>
+
+                    No Preview
+
+                </span>
+
+            </div>
+
+            <button
+                class="btn btn-secondary"
+                onclick="handleChangeProfilePicture(event)">
+
+                <i class="fas fa-check-circle"></i>
+
+                Update Profile
+
+            </button>
+
+        </div>
+
+        <!-- User Posts -->
+
+        <div class="profile-posts">
+
+            <h3>
+
+                <i class="fas fa-images"></i>
+
+                Your Posts
+
+            </h3>
+
+            <div id="userPosts">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- POST MODAL -->
+<!-- ========================= -->
+
+<div id="postModal"
+     class="modal">
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            onclick="closeModal()">
+
+            <i class="fas fa-times"></i>
+
+        </button>
+
+        <div id="modalPost">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MOBILE BOTTOM NAVIGATION -->
+<!-- ========================= -->
+
+<div id="bottomNav"
+     class="bottom-nav">
+
+    <button
+        id="bn-home"
+        onclick="showPage('feed')">
+
+        <i class="fas fa-house"></i>
+
+    </button>
+
+    <button
+        id="bn-search"
+        onclick="showPage('search')">
+
+        <i class="fas fa-search"></i>
+
+    </button>
+
+    <button
+        id="bn-create"
+        onclick="showPage('create')">
+
+        <i class="fas fa-square-plus"></i>
+
+    </button>
+
+    <button
+        id="bn-profile"
+        onclick="showPage('profile')">
+
+        <i class="fas fa-user"></i>
+
+    </button>
+
+</div>
+
+<!-- ========================= -->
+<!-- TOAST NOTIFICATIONS -->
+<!-- ========================= -->
+
+<div id="toastContainer">
+
+</div>
+
+<!-- ========================= -->
+<!-- LOADER -->
+<!-- ========================= -->
+
+<div id="globalLoader"
+     class="global-loader"
+     style="display:none;">
+
+    <div class="loader-circle"></div>
+
+</div>
+
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
